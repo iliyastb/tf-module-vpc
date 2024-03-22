@@ -76,7 +76,7 @@ resource "aws_route_table" "private-rt" {
 }
 
 resource "aws_route_table_association" "private-ass" {
-  for_each = var.public_subnets
+  for_each = var.private_subnets
   subnet_id      = lookup(lookup(aws_subnet.private_subnets, each.value["name"], null), "id", null)
   route_table_id = lookup(lookup(aws_route_table.private-rt, each.value["name"], null), "id", null)
 }
